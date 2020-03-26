@@ -28,6 +28,7 @@ Get-Date
 (new-object net.webclient).DownloadFile("$INSTALLER_URL","$TEMP_EXE")
 
 Write-Host "Executar instal·lador"
+Write-Host "CMD: Start-Process -Filepath $TEMP_EXE -ArgumentList $SetupArgs -verbose"
 Get-Date
 Start-Process -Filepath $TEMP_EXE -ArgumentList $SetupArgs -verbose
 
