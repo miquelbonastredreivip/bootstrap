@@ -2,7 +2,7 @@ Write-Host "Inici bootstrap Windows"
 
 $INSTALLER_URL = "https://repo.saltstack.com/windows/Salt-Minion-3000-Py2-x86-Setup.exe"
 $MASTER_IP     = "10.20.2.2"
-$TEMP_EXE      = "C:\TEMP\Salt-Minion-Setup.exe"
+$TEMP_EXE      = "C:\WINDOWS\TEMP\Salt-Minion-Setup.exe"
 
 $VerbosePreference = "continue"
 
