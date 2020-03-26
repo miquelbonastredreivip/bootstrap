@@ -12,7 +12,7 @@ $MinionIP = (
     }
 ).IPv4Address.IPAddress
 
-$SetupArgs = "/minion-name=$MinionIP /S"
+$SetupArgs = "/minion-name=$MinionIP"
 
 # $VerbosePreference = "continue"
 
