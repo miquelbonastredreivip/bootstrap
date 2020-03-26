@@ -4,11 +4,23 @@ $INSTALLER_URL = "https://repo.saltstack.com/windows/Salt-Minion-3000-Py2-x86-Se
 $MASTER_IP     = "10.20.2.2"
 $TEMP_EXE      = "C:\WINDOWS\TEMP\Salt-Minion-Setup.exe"
 
-$VerbosePreference = "continue"
+$MinionIP = (
+    Get-NetIPConfiguration |
+    Where-Object {
+        $_.IPv4DefaultGateway -ne $null -and
+        $_.NetAdapter.Status -ne "Disconnected"
+    }
+).IPv4Address.IPAddress
+
+$SetupArgs = "/minion-name=$MinionIP /S"
+
+# $VerbosePreference = "continue"
 
 Write-Host "Modificar fitxer host"
 Get-Date
 Add-Content C:\Windows\system32\drivers\etc\hosts "$MASTER_IP salt"
+
+
 
 Write-Host "Descarregar Salt-Minion"
 Write-Host "URL: $INSTALLER_URL"
@@ -17,7 +29,7 @@ Get-Date
 
 Write-Host "Executar instal·lador"
 Get-Date
-Start-Process -Filepath $TEMP_EXE
+Start-Process -Filepath $TEMP_EXE -ArgumentList $SetupArgs
 
 Write-Host "Final bootstrap"
 Get-Date
