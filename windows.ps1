@@ -11,6 +11,7 @@ Get-Date
 Add-Content C:\Windows\system32\drivers\etc\hosts "$MASTER_IP salt"
 
 Write-Host "Descarregar Salt-Minion"
+Write-Host "URL: $INSTALLER_URL"
 Get-Date
 (new-object net.webclient).DownloadFile("$INSTALLER_URL","$TEMP_EXE")
 
