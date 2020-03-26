@@ -29,7 +29,7 @@ Get-Date
 
 Write-Host "Executar instal·lador"
 Get-Date
-Start-Process -Filepath $TEMP_EXE -ArgumentList $SetupArgs
+Start-Process -Filepath $TEMP_EXE -ArgumentList $SetupArgs -verbose
 
 Write-Host "Final bootstrap"
 Get-Date
