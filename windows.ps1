@@ -1,3 +1,10 @@
+#
+# Com executar aquest script:
+# Des de cmd.exe:
+#   PowerShell -Command "Invoke-Expression ((new-object net.webclient).DownloadString("https://bit.ly/mbonastre-bs-win-ps"))"
+# Des de Powershell:
+#   Invoke-Expression ((new-object net.webclient).DownloadString("https://bit.ly/mbonastre-bs-win-ps"))
+
 Write-Host "Inici bootstrap Windows"
 
 $INSTALLER_URL = "https://repo.saltstack.com/windows/Salt-Minion-3000-Py2-AMD64-Setup.exe"
@@ -33,7 +40,7 @@ Get-Date
 Start-Process -Filepath $TEMP_EXE -ArgumentList $SetupArgs -verbose
 
 Write-Host "Final bootstrap"
-Get-Datehttps://repo.saltstack.com/windows/Salt-Minion-3000-Py2-x86-Setup.exe
+Get-Date
 
 Write-Host "Si tot va bé, el mínion trigarà uns minuts en connectar-se al master"
 Write-Host "Buscar 'Salt Service Manager' a 'Background processes' al Task Manager"
