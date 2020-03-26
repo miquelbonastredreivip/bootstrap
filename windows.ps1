@@ -12,7 +12,7 @@ $MinionIP = (
     }
 ).IPv4Address.IPAddress
 
-$SetupArgs = "/minion-name=$MinionIP"
+$SetupArgs = "/minion-name=$MinionIP /S"
 
 # $VerbosePreference = "continue"
 
@@ -34,3 +34,6 @@ Start-Process -Filepath $TEMP_EXE -ArgumentList $SetupArgs -verbose
 
 Write-Host "Final bootstrap"
 Get-Date
+
+Write-Host "Si tot va bé, el mínion trigarà uns minuts en connectar-se al master"
+Write-Host "Buscar 'Salt Service Manager' a 'Background processes' al Task Manager"
