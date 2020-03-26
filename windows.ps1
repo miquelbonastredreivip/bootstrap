@@ -1,6 +1,6 @@
 Write-Host "Inici bootstrap Windows"
 
-$INSTALLER_URL = "https://repo.saltstack.com/windows/Salt-Minion-3000-Py2-x86-Setup.exe"
+$INSTALLER_URL = "https://repo.saltstack.com/windows/Salt-Minion-3000-Py2-AMD64-Setup.exe"
 $MASTER_IP     = "10.20.2.2"
 $TEMP_EXE      = "C:\WINDOWS\TEMP\Salt-Minion-Setup.exe"
 
@@ -33,7 +33,7 @@ Get-Date
 Start-Process -Filepath $TEMP_EXE -ArgumentList $SetupArgs -verbose
 
 Write-Host "Final bootstrap"
-Get-Date
+Get-Datehttps://repo.saltstack.com/windows/Salt-Minion-3000-Py2-x86-Setup.exe
 
 Write-Host "Si tot va bé, el mínion trigarà uns minuts en connectar-se al master"
 Write-Host "Buscar 'Salt Service Manager' a 'Background processes' al Task Manager"
