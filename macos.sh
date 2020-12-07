@@ -23,7 +23,7 @@ sudo dseditgroup -o edit -a "${ADM_USER}" -t user com.apple.access_ssh
 # add salt server to host file
 #
 
-echo "${SALT} salt" >> /etc/hosts
+sudo bash -c "echo '${SALT} salt' >> /etc/hosts"
 
 #
 # Install homebrew
