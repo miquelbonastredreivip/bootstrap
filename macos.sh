@@ -22,8 +22,9 @@ sudo dseditgroup -o edit -a "${ADM_USER}" -t user com.apple.access_ssh
 #
 # add salt server to host file
 #
-
-sudo bash -c "echo '${SALT} salt' >> /etc/hosts"
+if ! grep -q -e "^${SALT}  *salt *$" ; then
+  sudo bash -c "echo '${SALT} salt' >> /etc/hosts"
+fi
 
 #
 # Install homebrew
@@ -33,6 +34,14 @@ sudo bash -c "echo '${SALT} salt' >> /etc/hosts"
 #
 # Install and launch salt-minion
 #
-brew install saltstack
-sudo salt-minion -d
 
+#
+# ("brew install salt" has problems)
+#
+# brew install salt
+# sudo salt-minion -d
+
+# Install saltstack using bootstrap
+# (https://repo.saltproject.io/)
+curl -fsSL https://bootstrap.saltproject.io -o install_salt.sh
+sudo sh install_salt.sh -P -x python3
