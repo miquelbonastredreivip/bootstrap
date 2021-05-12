@@ -1,14 +1,26 @@
 #!/bin/sh
-
+#
+# $1 - saltmaster IP (mandatory)
+# $2 - hostname for this machine (optional)
+#
 if [ -z "$1" ] ; then
   echo "We need IP for the saltmaster server"
   exit
 fi
 
+if [ -n "$2" ] ; then
+  THIS_HOST="$2"
+else
+  info="MacOS-$(sw_vers -productVersion)-$(date "+%Y%m%d")"
+  THIS_HOST="$( echo ${info} )"
+fi
+
 ADM_USER="$( id -un )"
 SALT_HOST="$1"
 
-echo "Bootstrapping macos with user='${ADM_USER}' and salt='${SALT_HOST}'"
+
+echo "Bootstrapping macos with:"
+echo "  user='${ADM_USER}' salt='${SALT_HOST}' minion_id='${THIS_HOST}'"
 echo "(Enter to continue, Ctrl-C to exit)"
 read line
 
@@ -45,3 +57,4 @@ fi
 # (https://repo.saltproject.io/)
 curl -fsSL https://bootstrap.saltproject.io -o install_salt.sh
 sudo sh install_salt.sh -P -x python3
+
