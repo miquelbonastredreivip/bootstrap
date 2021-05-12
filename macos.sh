@@ -61,19 +61,14 @@ else
   echo "(Already there)"
 fi
 
-echo "Installing homebrew:"
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-
-# ("brew install salt" has some problems)
-#
-# brew install salt
-# sudo salt-minion -d
-
 echo "Installing and launching salt-minion:"
 echo "(using bootstrap)"
 
 curl -fsSL https://bootstrap.saltproject.io -o install_salt.sh
 sudo sh install_salt.sh -P -x python3 -i "${THIS_HOST}"
+
+
+echo "Installing homebrew:"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 
