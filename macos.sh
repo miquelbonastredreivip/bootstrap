@@ -1,11 +1,24 @@
 #!/bin/sh
-
 #
+#
+function usage() {
+cat <<EOF
+
+Usage:
+
+URL="https://raw.githubusercontent.com/miquelbonastredreivip/bootstrap/master/macos.sh"
+curl -fsSL ${URL} -o macos.sh
+sh macos.sh saltmasterIP [ hostname_for_this_machine ]
+
 # $1 - saltmaster IP (mandatory)
 # $2 - hostname for this machine (optional)
-#
+
+EOF
+}
+
 if [ -z "$1" ] ; then
   echo "We need IP for the saltmaster server"
+  usage
   exit
 fi
 
@@ -61,5 +74,6 @@ echo "Installing and launching salt-minion:"
 echo "(using bootstrap)"
 
 curl -fsSL https://bootstrap.saltproject.io -o install_salt.sh
-sudo sh install_salt.sh -P -x python3
+sudo sh install_salt.sh -P -x python3 -i "${THIS_HOST}"
+
 
