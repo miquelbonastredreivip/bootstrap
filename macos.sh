@@ -38,7 +38,7 @@ echo "Enabling SSH access:"
 sudo systemsetup -setremotelogin on
 
 echo "Enabling SSH access (alternate method):"
-sudo sudo launchctl load /System/Library/LaunchDaemons/ssh.plist
+sudo sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist
 
 echo "Adding salt server to host file:"
 
