@@ -1,5 +1,8 @@
 #!/bin/sh
 #
+# ToDo: ntp
+# ToDo: add salt IP as option not in hosts
+#
 #
 function usage() {
 cat <<EOF
@@ -41,6 +44,15 @@ read line
 echo "Exec harmless sudo id to enter password:"
 sudo id -a
 
+echo "Installing and launching salt-minion:"
+echo "(using bootstrap)"
+
+curl -fsSL https://bootstrap.saltproject.io -o install_salt.sh
+sudo sh install_salt.sh -P -x python3 -i "${THIS_HOST}" -A ${SALT_HOST}
+
+exit
+
+
 echo "Create ssh group:"
 sudo dseditgroup -o create -q com.apple.access_ssh
 
@@ -61,11 +73,6 @@ else
   echo "(Already there)"
 fi
 
-echo "Installing and launching salt-minion:"
-echo "(using bootstrap)"
-
-curl -fsSL https://bootstrap.saltproject.io -o install_salt.sh
-sudo sh install_salt.sh -P -x python3 -i "${THIS_HOST}"
 
 
 echo "Installing homebrew:"
