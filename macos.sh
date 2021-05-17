@@ -1,7 +1,9 @@
 #!/bin/sh
 #
-# ToDo: ntp
-# ToDo: add salt IP as option not in hosts
+# This script mainly installs salt-minion.
+#
+# It also makes some configurations to facilitate administration
+# in case salt-minion is not able to connect to salt-master.
 #
 #
 function usage() {
@@ -50,8 +52,9 @@ echo "(using bootstrap)"
 curl -fsSL https://bootstrap.saltproject.io -o install_salt.sh
 sudo sh install_salt.sh -P -x python3 -i "${THIS_HOST}" -A ${SALT_HOST}
 
-exit
-
+#
+# All this is optional:
+#
 
 echo "Create ssh group:"
 sudo dseditgroup -o create -q com.apple.access_ssh
