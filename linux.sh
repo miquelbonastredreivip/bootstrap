@@ -6,7 +6,7 @@
 # in case salt-minion is not able to connect to salt-master.
 #
 #
-function usage() {
+usage() {
 cat <<EOF
 
 Usage:
@@ -30,7 +30,7 @@ fi
 if [ -n "$2" ] ; then
   THIS_HOST="$2"
 else
-  info="Linux-$( lsb_release -s -i -r )-$(date "+%Y%m%d")"
+  info="Linux-$( lsb_release -s -i -r | tr " " "-" )-$(date "+%Y%m%d")"
   THIS_HOST="$( echo ${info} )"
 fi
 
