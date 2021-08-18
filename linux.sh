@@ -12,7 +12,7 @@ cat <<EOF
 Usage:
 
 URL="https://raw.githubusercontent.com/miquelbonastredreivip/bootstrap/master/linux.sh"
-curl -fsSL ${URL} -o linux.sh
+curl -fsSL \${URL} -o linux.sh
 sh linux.sh saltmasterIP [ hostname_for_this_machine ]
 
 # $1 - saltmaster IP (mandatory)
@@ -30,8 +30,8 @@ fi
 if [ -n "$2" ] ; then
   THIS_HOST="$2"
 else
-  info="Linux-$( lsb_release -s -i -r | tr " " "-" )-$(date "+%Y%m%d")"
-  THIS_HOST="$( echo ${info} )"
+  info="Linux-$( lsb_release -s -i -r )-$(date "+%Y%m%d")"
+  THIS_HOST="$( echo ${info} | tr " " - )"
 fi
 
 ADM_USER="$( id -un )"
